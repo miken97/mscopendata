@@ -9,9 +9,14 @@ License: MIT + file LICENSE
 URL: https://github.com/miken97/mscopendata
 BugReports: https://github.com/miken97/mscopendata/issues
 Imports: 
-    rlang (>= 0.4.11)
+    httr2,
+    rlang (>= 0.4.11),
+    tibble
 Suggests: 
+    rmarkdown,
+    knitr,
     roxygen2
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
+VignetteBuilder: knitr

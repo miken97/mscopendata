@@ -42,6 +42,9 @@ usethis::use_mit_license("Mike Nanos")
 usethis::use_tidy_eval()
 usethis::use_tidy_description()
 
+# add tibble print method
+usethis::use_tibble()
+
 # add readme
 usethis::use_readme_rmd()
 #> run after updating README.Rmd
@@ -61,9 +64,10 @@ devtools::check()
 
 r_files <- c(
   "globals",
+  "geomet-ogc-api"
 )
 
-usethis::use_r(r_files[1])
+usethis::use_r(r_files[2])
 
 
 ### pkg datasets ----
@@ -77,17 +81,22 @@ usethis::use_r(r_files[1])
 
 ### pkg dependencies ----
 
-# pkg_deps <- c(
+pkg_deps <- c(
 #   "dplyr",
-#   "httr2",
+  "httr2"
 #   "purrr",
 #   "rlang",
 #   "stringr",
 #   "tibble",
 #   "tidyr"
-# )
+)
 
-# usethis::use_package(pkg_deps[7])
+usethis::use_package(pkg_deps[1])
+
+
+# Step 6: Vignettes ---------------------------------------------------
+
+usethis::use_vignette("msc-opendata-services", "MSC Open Data")
 
 
 ## Documentation ----
@@ -128,3 +137,4 @@ usethis::use_r(r_files[1])
 #
 #   - `@return description` describes the output from the function
 #      - description
+#      - #' @return a [tibble][tibble::tibble-package]
