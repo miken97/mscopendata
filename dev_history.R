@@ -20,7 +20,7 @@ usethis::create_package("C:/mike_nanos/r_files/mscopendata")
 # create dev_history.R and hide from pkg build
 # > save dev_history.R in project root
 usethis::use_build_ignore("dev_history.R")
-
+usethis::use_build_ignore("msc-opendata-services.Rmd")
 
 # Step 3: Git Connection --------------------------------------------------
 
@@ -64,7 +64,9 @@ devtools::check()
 
 r_files <- c(
   "globals",
-  "geomet-ogc-api"
+  "utils",
+  "geomet-ogc-api",
+  "collections"
 )
 
 usethis::use_r(r_files[2])
@@ -82,21 +84,21 @@ usethis::use_r(r_files[2])
 ### pkg dependencies ----
 
 pkg_deps <- c(
-#   "dplyr",
-  "httr2"
-#   "purrr",
-#   "rlang",
-#   "stringr",
-#   "tibble",
+  "dplyr",
+  "httr2",
+  "purrr",
+  "rlang",
+  "stringr",
+  "tibble"
 #   "tidyr"
 )
 
-usethis::use_package(pkg_deps[1])
+usethis::use_package(pkg_deps[2])
 
 
 # Step 6: Vignettes ---------------------------------------------------
 
-usethis::use_vignette("msc-opendata-services", "MSC Open Data")
+# usethis::use_vignette("msc-opendata-services", "MSC Open Data")
 
 
 ## Documentation ----

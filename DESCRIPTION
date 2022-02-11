@@ -9,8 +9,11 @@ License: MIT + file LICENSE
 URL: https://github.com/miken97/mscopendata
 BugReports: https://github.com/miken97/mscopendata/issues
 Imports: 
+    dplyr,
     httr2,
+    purrr,
     rlang (>= 0.4.11),
+    stringr,
     tibble
 Suggests: 
     rmarkdown,
