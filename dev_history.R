@@ -20,7 +20,7 @@ usethis::create_package("C:/mike_nanos/r_files/mscopendata")
 # create dev_history.R and hide from pkg build
 # > save dev_history.R in project root
 usethis::use_build_ignore("dev_history.R")
-usethis::use_build_ignore("msc-opendata-services.Rmd")
+
 
 # Step 3: Git Connection --------------------------------------------------
 
@@ -64,7 +64,6 @@ devtools::check()
 
 r_files <- c(
   "globals",
-  "utils",
   "geomet-ogc-api",
   "collections"
 )
@@ -89,16 +88,16 @@ pkg_deps <- c(
   "purrr",
   "rlang",
   "stringr",
-  "tibble"
-#   "tidyr"
+  "tibble",
+  "tidyr"
 )
 
-usethis::use_package(pkg_deps[2])
+usethis::use_package(pkg_deps[7])
 
 
 # Step 6: Vignettes ---------------------------------------------------
 
-# usethis::use_vignette("msc-opendata-services", "MSC Open Data")
+usethis::use_vignette("msc-opendata-services", "MSC Open Data")
 
 
 ## Documentation ----
@@ -140,3 +139,14 @@ usethis::use_package(pkg_deps[2])
 #   - `@return description` describes the output from the function
 #      - description
 #      - #' @return a [tibble][tibble::tibble-package]
+
+
+# Step 7: PkgDown Site ------------------------------------------------
+
+# <https://pkgdown.r-lib.org/>
+
+# run once to configure your package to use pkgdown
+usethis::use_pkgdown()
+
+# build website
+pkgdown::build_site()

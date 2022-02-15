@@ -1,0 +1,157 @@
+---
+title: "MSC Open Data"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{MSC Open Data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r libs, include = FALSE}
+# libraries
+library(tibble)
+library(dplyr)
+library(kableExtra)
+```
+
+```{r setup}
+library(mscopendata)
+```
+
+# MSC GeoMet OGC API
+
+The [OGC API - Features](https://github.com/opengeospatial/ogcapi-features)
+(WFS 3) provides a specification to querying geospatial data. The entry
+point is a `landing page` (path `/`) which provides links to:
+
+  + *API definition* (link-rel: `service-desc` and `service-doc`):
+  
+    + Describes the capabilities of the server. A GET request returns a
+    description of the API.
+  
+  + *Conformance declaration* (path: `/conformance`, link-rel: `conformance`):  
+  
+    + States the conformance classes from standards or community
+    specifications. A GET request returns the list of URIs of conformance
+    classes implemented by the server.
+  
+  + *Collections* (path: `collections`, link-rel: `data`):  
+  
+    + Data is organized into one or more collections.
+    + Provides information about and access to the collections.
+    + Each collection consists of features (i.e. *feature collection*). 
+  
+
+Accessing *Collections* using a GET request returns  at least the list of
+collections. For each *Collection*, a link to the items in the collection
+(`Features`, path: `collection/{collection_id}/items`, link-rel: `items`) as
+well as key into about the collection which includes:
+
+  + A local identifier for the collection that is unique for the dataset;
+  + A list of coordinate reference systems (CRS) (defaults to WGS 84 with
+  axis order longitude/latitude);
+  + An optional title and description for the collection;
+  + An optional extent (spatial and temporal); and,
+  + An optional indicator about the type of the items in the collection
+  (default value is `feature`).
+
+
+Every URL is of the form `https://api.weather.gc.ca/{endpoints}`
+
+  + Data is passed to the resource with query parameters.
+  + Each resource has common query parameters: `f` and `limit`.
+  + All endpoints return JSON, RDF (JSON-LD) and HTML data.'
+
+
+See [OGC Documentation](https://docs.ogc.org/is/17-069r3/17-069r3.html#_collections_) for more information.
+
+```{r ogc-api-endpoints, echo = F}
+# OGC API endpoints
+landing <- tibble(
+  Title = c(
+    "<b>Landing Page</b><br>
+    See [Section 7.2](https://docs.ogc.org/is/17-069r3/17-069r3.html#_api_landing_page)"
+  ),
+  `URL Resouce Path and Query Parameters` = c(
+    "<u>Path:</u> `{base_url}/`"
+  )
+)
+
+conformance <- tibble(
+  Title = c(
+    "<b>Conformance Declaration</b><br>
+    See [Section 7.4](https://docs.ogc.org/is/17-069r3/17-069r3.html#_declaration_of_conformance_classes)"
+  ),
+  `URL Resouce Path and Query Parameters` = c(
+    "<u>Path:</u> `{base_url}/conformance`"
+  )
+)
+
+collections <- tibble(
+  Title = c(
+    "<b>Feature Collections</b><br>
+    See [Section 7.13](https://docs.ogc.org/is/17-069r3/17-069r3.html#_collections_)"
+  ),
+  `URL Resouce Path and Query Parameters` = c(
+    "<u>Path:</u> `{base_url}/collections`"
+  )
+)
+
+collection <- tibble(
+  Title = c(
+    "<b>Feature Collection</b><br>
+    See [Section 7.14](https://docs.ogc.org/is/17-069r3/17-069r3.html#_collection_)"
+  ),
+  `URL Resouce Path and Query Parameters` = c(
+    "<u>Path:</u> `{base_url}/collections/{collection_id}`"
+  )
+)
+
+items <- tibble(
+  Title = c(
+    "<b>Features</b><br>
+    See [Section 7.15](https://docs.ogc.org/is/17-069r3/17-069r3.html#_items_)"
+  ),
+  `URL Resouce Path and Query Parameters` = c(
+    "<u>Path:</u> `{base_url}/collections/{collection_id}/items`<br><br>
+    <u>Query Parameters:</u>
+    <ul>
+    <li>`limit`: control the subset of the selected features (i.e. the page size).</li>
+    <li>`bbox`: subset `features` in the `collection` based on bounding box (format: `xmin, ymin, xmax, ymax`; Eg. `bbox=160.6,-55.95,-170,-25.89`). See [Section 7.15.3](https://docs.ogc.org/is/17-069r3/17-069r3.html#_parameter_bbox)</li>
+    <li>`datetime`: subset `features` in the `collection` based on time interval (format: `%Y-%m-%d HH:MM:SS`; Eg.: `datetime=2018-02-12T23%3A20%3A52Z`). See [Section 7.15.4](https://docs.ogc.org/is/17-069r3/17-069r3.html#_parameter_datetime)</li>
+    <li>`properties`: subset `features` in the `collection`. See [Section 7.15.5](https://docs.ogc.org/is/17-069r3/17-069r3.html#_parameters_for_filtering_on_feature_properties)</li>
+    </ul>"
+  )
+)
+
+item <- tibble(
+  Title = c(
+    "<b>Feature</b><br>
+    See [Section 7.16](https://docs.ogc.org/is/17-069r3/17-069r3.html#_feature_)"
+  ),
+  `URL Resouce Path and Query Parameters` = c(
+    "<u>Path:</u> `{base_url}/collections/{collection_id}/items/{feature_id}`<br><br>
+    <u>Query Parameters:</u>
+    <ul>
+    <li>`feature_id` (local identifier of the feature)</li>
+    </ul>"
+  )
+)
+
+bind_rows(landing, conformance, collections, collection, items, item) |> 
+  kbl(caption = "Overview of OCG API Endpoints",
+      align = c("l", "l"), escape = F) |> 
+  kable_styling(c("hover"), full_width = F) |> 
+  column_spec(1, width = "6cm") |> 
+  column_spec(2, width = "14cm") |> 
+  add_footnote(
+    label = "`{base_url} = https://api.weather.gc.ca`",
+    notation = "symbol")
+```

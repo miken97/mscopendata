@@ -17,7 +17,7 @@ geomet_ogc_api(
 )
 }
 \arguments{
-\item{collection_id}{A character string. Appends URL path. Unique feature collection identifier. Run \code{\link[=collection_ids]{collection_ids()}} to get a list of valid options. If \code{NULL} (default), a list of all available collections from the \href{https://api.weather.gc.ca/}{MSC GeoMet OGC API} \verb{/collections} endpoint.}
+\item{collection_id}{A character string. Appends URL path. Unique feature collection identifier. Run \code{\link[=collections]{collections()}} to get a list of valid options. If \code{NULL} (default), a list of all available collections from the \href{https://api.weather.gc.ca/}{MSC GeoMet OGC API} \verb{/collections} endpoint.}
 
 \item{items}{A character string. Appends URL path. Set to \code{"items"} to return feature collection features. Defaults to \code{NULL}.}
 

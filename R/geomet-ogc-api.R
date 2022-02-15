@@ -4,7 +4,7 @@
 #' The [OGC API - Features](https://github.com/opengeospatial/ogcapi-features) (WFS 3) provides access to collections of geospatial data.
 #' URLs are of the form: `https://api.weather.gc.ca/collections/{collecion_id}/items/{item_id}?{query}`.
 #'
-#' @param collection_id A character string. Appends URL path. Unique feature collection identifier. Run [collection_ids()] to get a list of valid options. If `NULL` (default), a list of all available collections from the [MSC GeoMet OGC API](https://api.weather.gc.ca/) `/collections` endpoint.
+#' @param collection_id A character string. Appends URL path. Unique feature collection identifier. Run [collections()] to get a list of valid options. If `NULL` (default), a list of all available collections from the [MSC GeoMet OGC API](https://api.weather.gc.ca/) `/collections` endpoint.
 #' @param items A character string. Appends URL path. Set to `"items"` to return feature collection features. Defaults to `NULL`.
 #' @param feature_id A character string. Appends URL path. Unique local identifier of the feature. Defaults to `NULL`.
 #' @param format A character string. Appends URL query. API response format. One of `"json"`, `"jsonld"` or `"html"`. Defaults to `"json"`.

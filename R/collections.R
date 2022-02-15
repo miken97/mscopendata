@@ -1,24 +1,101 @@
 
-#' Collections
+#' Feature Collections
 #'
-#' List of available collections from the [MSC GeoMet OGC API](https://api.weather.gc.ca/) `/collections` endpoint.
+#' List of available feature collections from the [MSC GeoMet OGC API](https://api.weather.gc.ca/) `/collections` endpoint.
 #'
-#' @return A data frame of available collections, including unique identifier
-#' (`collection_id`), title and description.
+#' @param incl_extents A logical scalar. If `TRUE`, spatial and temporal extents for each feature collection are returned. Defaults to `FALSE`.
+#' @param url_only A logical scalar. If `TRUE`, request URL is returned without making GET request to API. Defaults to `FALSE`.
+#'
+#' @return A data frame of available features collections, including unique identifier (`collection_id`), title and description.
 #' @export
 #'
 #' @examples
-#' collection_ids()
+#' collections()
 #'
-collection_ids <- function() {
+collections <- function(incl_extents = FALSE, url_only = FALSE) {
 
-  collection_list <- geomet_ogc_api(format = "json", flatten = TRUE)
+  collection_list <- geomet_ogc_api(
+    format = "json",
+    url_only = url_only,
+    flatten = TRUE
+  )
 
-  tibble::tibble(
+  # Section 7.13. Feature Collections
+  # returns:
+  #   - `links`
+  #   - `collections`
+  # ref: <https://docs.ogc.org/is/17-069r3/17-069r3.html#_collections_>
+
+  feature_collections <- tibble::tibble(
     collection_id = collection_list[["collections"]][["id"]],
     title = collection_list[["collections"]][["title"]],
     description = collection_list[["collections"]][["description"]]
   )
+
+  if (incl_extents) {
+
+    ## links ----
+
+    links <- collection_list[["collections"]][["links"]] |>
+      dplyr::bind_rows(.id = "row_id") |>
+      dplyr::mutate(row_id = as.integer(.data[["row_id"]])) |>
+      dplyr::filter(is.na(.data[["hreflang"]]) | .data[["hreflang"]] == "en-CA") |>
+      dplyr::arrange(.data[["row_id"]], .data[["rel"]], .data[["type"]]) |>
+      dplyr::select(-.data[["hreflang"]]) |>
+      tidyr::nest(links = c("type", "rel", "title", "href")) |>
+      dplyr::select(-.data[["row_id"]])
+
+
+    ## collections ----
+
+    # spatial extent
+    extent_spatial <- purrr::map_dfr(
+      collection_list[["collections"]][["extent"]][["spatial"]][["bbox"]],
+      ~tibble::as_tibble_row(.x[1,], .name_repair = ~c("xmin", "ymin", "xmax", "ymax"))
+    ) |>
+      dplyr::mutate(row_id = dplyr::row_number()) |>
+      dplyr::arrange(.data[["row_id"]]) |>
+      tidyr::nest(bbox = c("xmin", "ymin", "xmax", "ymax")) |>
+      dplyr::select(-.data[["row_id"]])
+
+    # temporal extent
+    extent_temporal <- collection_list[["collections"]][["extent"]][["temporal"]] |>
+      dplyr::mutate(
+        row_id = dplyr::row_number(),
+        invalid = purrr::map_lgl(.data[["interval"]], ~!is.null(.x))
+      ) |>
+      dplyr::filter(.data[["invalid"]]) |>
+      dplyr::mutate(
+        start_date = purrr::map(
+          .data[["interval"]],
+          ~stringr::str_extract_all(.x[1, 1], "\\d{4}-\\d{2}-\\d{2}", simplify = T)[,1]
+        ),
+        end_date = purrr::map(
+          .data[["interval"]],
+          ~stringr::str_extract_all(.x[1, 2], "\\d{4}-\\d{2}-\\d{2}", simplify = T)[,1]
+        )
+      ) |>
+      dplyr::transmute(
+        .data[["row_id"]],
+        .data[["start_date"]],
+        .data[["end_date"]]
+      ) |>
+      tidyr::unnest(cols = c(.data[["start_date"]], .data[["end_date"]])) |>
+      tidyr::complete(row_id = seq.int(1L, nrow(extent_spatial))) |>
+      dplyr::arrange(.data[["row_id"]]) |>
+      tidyr::nest(interval = c("start_date", "end_date")) |>
+      dplyr::select(-.data[["row_id"]])
+
+
+    # combine ----
+
+    feature_collections |>
+      dplyr::bind_cols(extent_spatial, extent_temporal, links)
+
+  } else {
+    feature_collections
+
+  }
 
 }
 
@@ -27,7 +104,7 @@ collection_ids <- function() {
 #'
 #' Get collection from the [MSC GeoMet OGC API](https://api.weather.gc.ca/) `/collections/{collection_id}` endpoint.
 #'
-#' @param collection_id A character string. Unique collection identifier. Run [collection_ids()] to get a list of valid options.
+#' @param collection_id A character string. Unique collection identifier. Run [collections()] to get a list of valid options.
 #' @param use_tidy A logical scalar. Should API response be tidied? Defaults to `TRUE`.
 #'
 #' @return A data frame of available collections, including unique identifier (`collection_id`), title and description.

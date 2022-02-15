@@ -19,9 +19,7 @@ climate and environmental conditions over Canada and the world. The main
 categories of data available are:
 
 -   Weather alerts, current conditions and public forecasts
-
 -   Weather, water and environmental observations and forecast data
-
 -   Climate data
 
 ## Data Access
@@ -44,9 +42,9 @@ Description
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left;">
-[**MSC
-GeoMet**](https://eccc-msc.github.io/open-data/msc-geomet/readme_en/)
+<td style="text-align:left;width: 4cm; ">
+<b><a href="https://eccc-msc.github.io/open-data/msc-geomet/readme_en/"><b>MSC
+GeoMet</b></a> </b>
 </td>
 <td style="text-align:left;">
 <ul>
@@ -110,9 +108,9 @@ Unsupported web services for experimental data
 </td>
 </tr>
 <tr>
-<td style="text-align:left;">
-[**MSC
-Datamart**](https://eccc-msc.github.io/open-data/msc-datamart/readme_en/)
+<td style="text-align:left;width: 4cm; ">
+<b><a href="https://eccc-msc.github.io/open-data/msc-datamart/readme_en/">MSC
+Datamart</a></b>
 </td>
 <td style="text-align:left;">
 <ul>

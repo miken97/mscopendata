@@ -7,7 +7,7 @@
 get_collection(collection_id, use_tidy = TRUE)
 }
 \arguments{
-\item{collection_id}{A character string. Unique collection identifier. Run \code{\link[=collection_ids]{collection_ids()}} to get a list of valid options.}
+\item{collection_id}{A character string. Unique collection identifier. Run \code{\link[=collections]{collections()}} to get a list of valid options.}
 
 \item{use_tidy}{A logical scalar. Should API response be tidied? Defaults to \code{TRUE}.}
 }

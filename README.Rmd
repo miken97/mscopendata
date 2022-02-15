@@ -31,9 +31,7 @@ and environmental conditions over Canada and the world. The main categories
 of data available are:
 
   + Weather alerts, current conditions and public forecasts
-  
   + Weather, water and environmental observations and forecast data
-  
   + Climate data
 
 
@@ -44,8 +42,8 @@ The available open data services are:
 ```{r msc-data-services, echo = F}
 msc_services <- tibble::tibble(
   Service = c(
-    "[**MSC GeoMet**](https://eccc-msc.github.io/open-data/msc-geomet/readme_en/)",
-    "[**MSC Datamart**](https://eccc-msc.github.io/open-data/msc-datamart/readme_en/)"
+    "<b><a href='https://eccc-msc.github.io/open-data/msc-geomet/readme_en/'><b>MSC GeoMet</b></a>",
+    "<b><a href='https://eccc-msc.github.io/open-data/msc-datamart/readme_en/'<b>MSC Datamart</b></a>"
   ),
   Description = c(
     "<ul>
@@ -90,5 +88,6 @@ msc_services |>
   booktabs = TRUE,
   align = c('l', 'l')
   ) |> 
-  kableExtra::kable_styling(c("hover", "condensed"))
+  kableExtra::kable_styling(c("hover", "condensed")) |> 
+  kableExtra::column_spec(1, width = "4cm") 
 ```
