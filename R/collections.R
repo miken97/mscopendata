@@ -1,5 +1,5 @@
 
-#' Feature Collections
+#' Available Feature Collections (GeoMet OGC API)
 #'
 #' List of available feature collections from the [MSC GeoMet OGC API](https://api.weather.gc.ca/) `/collections` endpoint.
 #'
@@ -7,6 +7,7 @@
 #' @param url_only A logical scalar. If `TRUE`, request URL is returned without making GET request to API. Defaults to `FALSE`.
 #'
 #' @return A data frame of available features collections, including unique identifier (`collection_id`), title and description.
+#' @family ogc_api
 #' @export
 #'
 #' @examples
@@ -100,7 +101,7 @@ collections <- function(incl_extents = FALSE, url_only = FALSE) {
 }
 
 
-#' Get Collection
+#' Get Feature Collection (GeoMet OGC API)
 #'
 #' Get collection from the [MSC GeoMet OGC API](https://api.weather.gc.ca/) `/collections/{collection_id}` endpoint.
 #'
@@ -108,6 +109,7 @@ collections <- function(incl_extents = FALSE, url_only = FALSE) {
 #' @param use_tidy A logical scalar. Should API response be tidied? Defaults to `TRUE`.
 #'
 #' @return A data frame of available collections, including unique identifier (`collection_id`), title and description.
+#' @family ogc_api
 #' @export
 #'
 #' @examples

@@ -1,7 +1,7 @@
 
-#' MSC GeoMet OGC-API Core Request Function
+#' MSC GeoMet OGC API Wrapper
 #'
-#' The [OGC API - Features](https://github.com/opengeospatial/ogcapi-features) (WFS 3) provides access to collections of geospatial data.
+#' Core request function for the MSC GeoMet OGC API. The [OGC API - Features](https://github.com/opengeospatial/ogcapi-features) (WFS 3) provides access to collections of geospatial data.
 #' URLs are of the form: `https://api.weather.gc.ca/collections/{collecion_id}/items/{item_id}?{query}`.
 #'
 #' @param collection_id A character string. Appends URL path. Unique feature collection identifier. Run [collections()] to get a list of valid options. If `NULL` (default), a list of all available collections from the [MSC GeoMet OGC API](https://api.weather.gc.ca/) `/collections` endpoint.
@@ -15,6 +15,7 @@
 #' @param flatten A logical scalar. Should JSON arrays containing only primitives (i.e. booleans, numbers, and strings) be caused to atomic vectors? Defaults to `FALSE`.
 #'
 #' @return NULL, an atomic vector, or list.
+#' @family ogc_api
 #' @export
 #'
 #' @examples

@@ -32,18 +32,15 @@ The [OGC API - Features](https://github.com/opengeospatial/ogcapi-features)
 point is a `landing page` (path `/`) which provides links to:
 
   + *API definition* (link-rel: `service-desc` and `service-doc`):
-  
     + Describes the capabilities of the server. A GET request returns a
     description of the API.
   
   + *Conformance declaration* (path: `/conformance`, link-rel: `conformance`):  
-  
     + States the conformance classes from standards or community
     specifications. A GET request returns the list of URIs of conformance
     classes implemented by the server.
   
   + *Collections* (path: `collections`, link-rel: `data`):  
-  
     + Data is organized into one or more collections.
     + Provides information about and access to the collections.
     + Each collection consists of features (i.e. *feature collection*). 

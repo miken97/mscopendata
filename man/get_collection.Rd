@@ -2,7 +2,7 @@
 % Please edit documentation in R/collections.R
 \name{get_collection}
 \alias{get_collection}
-\title{Get Collection}
+\title{Get Feature Collection (GeoMet OGC API)}
 \usage{
 get_collection(collection_id, use_tidy = TRUE)
 }
@@ -22,3 +22,9 @@ Get collection from the \href{https://api.weather.gc.ca/}{MSC GeoMet OGC API} \v
 get_collection("climate-stations")
 }
 }
+\seealso{
+Other ogc_api: 
+\code{\link{collections}()},
+\code{\link{geomet_ogc_api}()}
+}
+\concept{ogc_api}

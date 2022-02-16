@@ -2,7 +2,7 @@
 % Please edit documentation in R/geomet-ogc-api.R
 \name{geomet_ogc_api}
 \alias{geomet_ogc_api}
-\title{MSC GeoMet OGC-API Core Request Function}
+\title{MSC GeoMet OGC API Wrapper}
 \usage{
 geomet_ogc_api(
   collection_id = NULL,
@@ -39,7 +39,7 @@ geomet_ogc_api(
 NULL, an atomic vector, or list.
 }
 \description{
-The \href{https://github.com/opengeospatial/ogcapi-features}{OGC API - Features} (WFS 3) provides access to collections of geospatial data.
+Core request function for the MSC GeoMet OGC API. The \href{https://github.com/opengeospatial/ogcapi-features}{OGC API - Features} (WFS 3) provides access to collections of geospatial data.
 URLs are of the form: \verb{https://api.weather.gc.ca/collections/\{collecion_id\}/items/\{item_id\}?\{query\}}.
 }
 \examples{
@@ -47,3 +47,9 @@ URLs are of the form: \verb{https://api.weather.gc.ca/collections/\{collecion_id
 geomet_ogc_api()
 }
 }
+\seealso{
+Other ogc_api: 
+\code{\link{collections}()},
+\code{\link{get_collection}()}
+}
+\concept{ogc_api}

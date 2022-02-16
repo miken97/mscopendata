@@ -150,3 +150,11 @@ usethis::use_pkgdown()
 
 # build website
 pkgdown::build_site()
+
+# add pkgdown, yml and docs to .buildignore
+# usethis::use_build_ignore("_pkgdown.yml")
+# usethis::use_build_ignore("^pkgdown$")
+
+# generate readme
+usethis::use_readme_rmd()
+devtools::build_readme()

@@ -1,0 +1,46 @@
+url: https://github.com/miken97/mscopendata
+
+template:
+  bootstrap: 5
+  # bootswatch: flatly
+  bslib:
+    bg: "#fefefe"
+    fg: "#444444"
+    primary: "#2c6e96"
+    danger: "#c71c22"
+    base_font: {google: "Maven Pro"}
+    heading_font: {google: "Maven Pro"}
+    code_font: {google: "Roboto Mono"}
+    font_scale: 1.1
+    spacer: "1.25rem"
+  highlight: tango
+  params:
+    mathjax: true
+
+authors:
+  Mike Nanos:
+    href: https://github.com/miken97
+
+navbar:
+  bg: primary
+  structure:
+    left:  [intro, reference, articles]
+    right: [search, news, github]
+  components:
+    news:
+      text: News
+      href: news/index.html
+    github:
+      icon: fa-github
+      href: https://github.com/miken97
+      aria-label: Github
+
+reference:
+  - title: "MSC GeoMet"
+  - subtitle: "OGC API"
+    desc: >
+      Feature Collections
+    contents:
+      - geomet_ogc_api
+      - collections
+      - get_collection

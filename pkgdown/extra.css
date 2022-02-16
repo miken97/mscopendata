@@ -1,0 +1,71 @@
+
+/*
+https://coolors.co/2fa4e7-2c6e96-283845-444444-c71c22
+*/
+
+/* Title */
+h1.title.toc-ignore {
+  margin-top: 1.25rem;
+  margin-bottom: 0.75rem;
+  font-size: 2.75rem;
+}
+
+/* Subtitle */
+h3.subtitle {
+  margin-top: 1rem;
+}
+
+/* Headers */
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+
+/* Links */
+
+a:hover {
+  color: #2fa4e7; /* blue1 */
+}
+
+a {
+  color: #5c646c; /* gray2 */
+}
+
+
+/* Navbar */
+
+.navbar {
+  background-color: #283845;
+}
+
+.navbar-nav li a:hover {
+  color: #2fa4e7 !important;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #2fa4e7;
+  background-color: inherit;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav > li > a {
+	color: #2fa4e7;
+}
+
+.navbar-default .navbar-link:hover {
+	color: #2fa4e7;
+}

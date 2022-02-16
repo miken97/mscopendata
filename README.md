@@ -24,110 +24,50 @@ categories of data available are:
 
 ## Data Access
 
-The available open data services are:
+The available open data services areas follows:
 
-<table class="table table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
-<caption>
-Meteorological Service of Canada (MSC) Open Data Services
-</caption>
-<thead>
-<tr>
-<th style="text-align:left;">
-Service
-</th>
-<th style="text-align:left;">
-Description
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;width: 4cm; ">
-<b><a href="https://eccc-msc.github.io/open-data/msc-geomet/readme_en/"><b>MSC
-GeoMet</b></a> </b>
-</td>
-<td style="text-align:left;">
-<ul>
-<li>
-Public access to MSC and Environment and Climate Change Canada (ECCC)
-data
-</li>
-<li>
-Access real-time and archived weather, climate and water datasets and
-products via web services and APIs
-</li>
-<li>
-GeoMet platform consists of the following services:
-</li>
-<ul>
-<li>
-GeoMet-OGC-API:
-</li>
-<ul>
-<li>
-Weather, climate and hydrometric data
-</li>
-<li>
-Standards supported: OGC API - Features, OGC API - Processes, STAC
-(experimental)
-</li>
-</ul>
-<li>
-GeoMet-Weather:
-</li>
-<ul>
-<li>
-Numerical Weather Prediction systems, weather radar, current conditions,
-alerts, and more
-</li>
-<li>
-Standards supported: WMS, WCS, SLD
-</li>
-</ul>
-<li>
-GeoMet-Climate:
-</li>
-<ul>
-<li>
-Climate data archives, simulations and scenarios
-</li>
-<li>
-Standards supported: WMS, WCS, SLD
-</li>
-</ul>
-<li>
-GeoMet-Beta:
-</li>
-<ul>
-<li>
-Unsupported web services for experimental data
-</li>
-</ul>
-</ul>
-</ul>
-</td>
-</tr>
-<tr>
-<td style="text-align:left;width: 4cm; ">
-<b><a href="https://eccc-msc.github.io/open-data/msc-datamart/readme_en/">MSC
-Datamart</a></b>
-</td>
-<td style="text-align:left;">
-<ul>
-<li>
-HTTPS raw data server
-</li>
-<li>
-Source of raw weather, water, climate and environmental data
-</li>
-<li>
-Location: <https://dd.weather.gc.ca/>
-</li>
-<li>
-Data formats: RHIB2, NetCDF, GeoJSON, shapefile, CSV, XML
-</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
+### MSC GeoMet
+
+-   [Service Read
+    Me](https://eccc-msc.github.io/open-data/msc-geomet/readme_en/)
+-   Public access to MSC and Environment and Climate Change Canada
+    (ECCC) data
+-   Access real-time and archived weather, climate and water datasets
+    and products via web services and APIs
+-   GeoMet platform consists of the following services:
+    -   **GeoMet-OGC-API:**
+        -   Weather, climate and hydrometric data
+        -   Standards supported:
+            -   OGC API - Features
+            -   OGC API - Processes
+            -   STAC (experimental)
+    -   **GeoMet-Weather:**
+        -   Numerical Weather Prediction systems, weather radar, current
+            conditions, alerts, and more
+        -   Standards supported:
+            -   WMS
+            -   WCS
+            -   SLD
+    -   **GeoMet-Climate:**
+        -   Climate data archives, simulations and scenarios
+        -   Standards supported:
+            -   WMS
+            -   WCS
+            -   SLD
+    -   **GeoMet-Beta:**
+        -   Unsupported web services for experimental data
+
+### MSC DataMart
+
+-   [Service Read
+    Me](https://eccc-msc.github.io/open-data/msc-datamart/readme_en/)
+-   HTTPS raw data server
+-   Source of raw weather, water, climate and environmental data
+-   Located at [dd.weather.gc.ca](https://dd.weather.gc.ca/)
+-   Data formats:
+    -   NetCDF
+    -   RHIB2
+    -   GeoJSON
+    -   SHP
+    -   CSV
+    -   XML
